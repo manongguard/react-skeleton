@@ -1,5 +1,6 @@
 import { all, spawn } from "redux-saga/effects"
 
+import HomeSaga from "containers/Home/Saga"
 //sagas
 // import { saga as apiSaga } from "API";
 // import { saga as socketSaga } from "socket";
@@ -7,5 +8,6 @@ import { all, spawn } from "redux-saga/effects"
 export default function* saga() {
   yield all([
     // spawn(searchResultSaga),
+    spawn(HomeSaga)
   ])
 }

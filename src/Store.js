@@ -1,9 +1,7 @@
 import { createStore } from "redux";
-import { persistStore } from "redux-persist"
-import { createBrowserHistory } from 'history'
+import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import { persistReducer } from "redux-persist";
 
 import reducers from "Reducer";
 import middleware, { sagaMiddleware } from "Middleware";
@@ -16,9 +14,8 @@ const persistConfig = {
     blacklist: []
 }
 
-export const history = createBrowserHistory()
-const rootReducer = persistReducer(persistConfig, reducers(history))
-const store = createStore(rootReducer, middleware(history));
+const rootReducer = persistReducer(persistConfig, reducers())
+const store = createStore(rootReducer, middleware());
 export const persistor = persistStore(store);
 
 sagaMiddleware.run(saga);

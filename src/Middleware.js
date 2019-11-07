@@ -1,27 +1,16 @@
-import { applyMiddleware } from "redux";
+import { applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { createLogger } from "redux-logger";
-import { routerMiddleware } from 'connected-react-router'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-const middleware = (history) => {
+const middleware = () => {
     if (process.env.NODE_ENV === "production") {
-        return applyMiddleware(sagaMiddleware, routerMiddleware(history));
-        // for debugging purposes when the testers find a bug
-        // middleware = composeWithDevTools(applyMiddleware(sagaMiddleware, createLogger(), connectRouter(history)));
+        return compose(applyMiddleware(sagaMiddleware));
     } else {
-        return composeWithDevTools(applyMiddleware(sagaMiddleware, createLogger(), routerMiddleware(history)));
+        return compose(composeWithDevTools(applyMiddleware(sagaMiddleware, createLogger())));
     }
 }
-
-// if (process.env.NODE_ENV === "production") {
-//     middleware = applyMiddleware(sagaMiddleware, routerMiddleware(history));
-//     // for debugging purposes when the testers find a bug
-//     // middleware = composeWithDevTools(applyMiddleware(sagaMiddleware, createLogger(), connectRouter(history)));
-// } else {
-//     middleware = composeWithDevTools(applyMiddleware(sagaMiddleware, createLogger(), routerMiddleware(history)));
-// }
 
 export default middleware

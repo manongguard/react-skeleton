@@ -1,12 +1,8 @@
 import { combineReducers } from "redux";
 
-// import { reducer as formReducer } from "redux-form";
-import { connectRouter } from 'connected-react-router'
+import homeReducer from 'containers/Home/Reducer';
 
-import homeReducer from 'Home/Reducer';
-
-const reducers = (history) => combineReducers({
-    router: connectRouter(history),
+const reducers = () => combineReducers({
     [homeReducer.key]: homeReducer,
   })
 
