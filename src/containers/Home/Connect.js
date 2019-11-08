@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { increment, decrement, incrementAsync } from "containers/Home/Action";
+import sagaCall, { increment, decrement, incrementAsync, callPingAPI } from "containers/Home/Action";
 
 const mapStateToProps = ({ firstName, lastName }) => ({
     firstName,
@@ -10,7 +10,8 @@ const mapStateToProps = ({ firstName, lastName }) => ({
 const mapDispatchToProps = dispatch => ({
     onIncrement: () => dispatch(increment()),
     onDecrement: () => dispatch(decrement()),
-    onIncrementAsync: () => dispatch(incrementAsync())
+    onIncrementAsync: () => dispatch(incrementAsync()),
+    onCallPingAPI: () => dispatch(sagaCall.onCallPingAPI())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connect(mapStateToProps, mapDispatchToProps) 

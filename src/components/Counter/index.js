@@ -1,7 +1,11 @@
 import React from "react";
 
-const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync }) =>
+const Counter = ({ value, onIncrement, onDecrement, onIncrementAsync, onCallPingAPI }) =>
     <div>
+        <button onClick={onCallPingAPI}>
+            call ping API
+        </button>
+        {' '}
         <button onClick={onIncrementAsync}>
             Increment after 1 second
         </button>

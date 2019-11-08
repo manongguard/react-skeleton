@@ -4,10 +4,10 @@ import { handleActions } from "redux-actions";
 //     clickButton,
 //     clearAll
 // } from "containers/Home/Action";
+import { callPingAPI } from 'containers/Home/Action'
 
 const homeDefaultState = {
-    firstName: '',
-    lastName: ''
+    data: {}
 }
 
 const homeReducer = handleActions({
@@ -19,6 +19,10 @@ const homeReducer = handleActions({
     // [clearAll]: () => ({
     //     ...homeDefaultState
     // })
+    [callPingAPI]: (state, action) => ({
+        ...state,
+        data: action.payload
+    })
 }, homeDefaultState)
 
 homeReducer.key = "home";
